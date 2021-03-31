@@ -1,0 +1,85 @@
+.main-nav {
+  display: flex;
+  background: #202020;
+  color: white;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.circle {
+  margin-top: 0;
+  width: 45px;
+  height: 45px;
+}
+
+.square1 {
+  width: 25px;
+  height: 25px;
+}
+
+.square2 {
+  width: 35px;
+  height: 45px;
+}
+
+.logo-caption {
+  font-size: 2rem;
+  margin-left: 1rem;
+}
+
+.nav-search {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-search > input {
+  width: 90%;
+  padding: 0.3rem 1rem;
+  background: #4b4a4a;
+  height: 2rem;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.search-btn {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  color: white;
+  background: #4b4a4a;
+}
+
+.nav-btn {
+  padding: 0.44rem;
+  border: none;
+  width: 40px;
+  cursor: pointer;
+}
+
+.nav-options {
+  width: 13%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.option-btn {
+  background: none;
+  color: white;
+}
+
+.avatar {
+  padding: 0.4rem;
+  background: #00579c;
+  border-radius: 50%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
+}
