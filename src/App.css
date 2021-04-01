@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
-@import url("https://lemoncss.netlify.app/styles/main.css");  
+@import url("https://lemoncss.netlify.app/styles/main.css");
 
 * {
   margin: 0;
@@ -7,6 +7,16 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-.App {
-  text-align: center;
+
+body {
+  background: #17181a;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 0.20fr 1fr;
+  grid-template-areas:
+    "a b b"
+    "a b b";
+  margin: 3.8rem 1rem 0rem 0rem;
 }

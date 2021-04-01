@@ -1,0 +1,38 @@
+.watch-later {
+  grid-area: b;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  display: grid;
+  color: white;
+  margin-top: 1rem;
+}
+
+.watch-later-video {
+  display: flex;
+  background: #222121;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.watch-later-video:hover {
+  background: #2c2b2b;
+}
+
+.watch-later-video > img {
+  width: 30%;
+}
+
+.watch-later-desc {
+  margin-left: 1rem;
+}
+
+.watch-later-desc > h3 {
+  /* font-size: 1rem; */
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.watch-later-desc > p {
+  color: grey;
+}

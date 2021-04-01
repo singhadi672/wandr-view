@@ -1,0 +1,85 @@
+.playlist-add {
+  display: grid;
+  grid-area: b;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  z-index: 1;
+  align-items: center;
+  background: #17181a;
+  opacity: 0.9;
+}
+
+.playlist-card {
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  width: 20%;
+  background: #202020;
+  box-shadow: 3px 3px 40px black;
+  color: white;
+  display: flex;
+  z-index: 2;
+  flex-direction: column;
+}
+
+.playlist-card-top {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem 2rem;
+  /* border-top: 1px solid grey; */
+  border-bottom: 1px solid rgb(61, 60, 60);
+}
+
+.playlist-card-list {
+  list-style: none;
+  width: 100%;
+  padding: 2rem 2rem;
+  border-bottom: 1px solid rgb(61, 60, 60);
+}
+
+input.checkbox {
+  transform: scale(1.5);
+  background: transparent;
+}
+
+.playlist-card-list > li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.playlist-card-bottom {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem 2rem;
+  cursor: pointer;
+}
+
+.playlist-new-playlist {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+
+.playlist-new-playlist > input[type="text"] {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid grey;
+  color: white;
+  padding: 0.5rem;
+}
+
+.playlist-btn {
+  color: rgb(16, 134, 231);
+  padding: 0.1rem 0.5rem;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}

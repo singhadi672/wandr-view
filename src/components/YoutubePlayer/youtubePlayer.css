@@ -1,0 +1,53 @@
+.player {
+  grid-area: b;
+  margin-top: 1rem;
+  margin-left: 5rem;
+  color: white;
+}
+
+.player-desc {
+  width: 95%;
+}
+
+.player-desc >h2{
+    font-weight: 400;
+}
+
+.player-other-info {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  color: grey;
+}
+
+.player-count-date {
+  display: flex;
+  width: 25%;
+  justify-content: space-between;
+}
+
+.player-user-options {
+  display: flex;
+  width: 23rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count-stat {
+  display: flex;
+  width: 20%;
+}
+
+.count-stat > p {
+  margin-left: 0.5rem;
+}
+
+.player-btn {
+  padding: 0.3rem 0.3rem;
+  background: none;
+  border: none;
+  color: grey;
+  font-size: 1rem;
+  cursor: pointer;
+}
