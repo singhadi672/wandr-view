@@ -1,5 +1,5 @@
 import "./App.css";
-import { useVideo, VideoContext } from "./contexts/video-context";
+import { useVideo } from "./contexts/video-context";
 import VideoList from "./components/VideoList/VideoList";
 import { Nav } from "./components/Nav/Nav";
 import { SideMenu } from "./components/SideMenu/SideMenu";

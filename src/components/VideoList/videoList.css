@@ -15,6 +15,7 @@
   flex-direction: column;
   height: 19rem;
   cursor: pointer;
+  position: relative;
 }
 
 .video-item:hover {
@@ -37,7 +38,7 @@
 
 .video-desc > h4 {
   font-weight: 400;
-  font-size: 1rem ;
+  font-size: 1rem;
 }
 #channel-title {
   margin-top: 0.5rem;

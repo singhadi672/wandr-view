@@ -3,6 +3,7 @@ import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useRef, useState } from "react";
 import { useVideo } from "../../contexts/video-context";
 import "./playlistAdd.css";
+import { v4 as uuidv4 } from "uuid";
 
 export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
   const { state, dispatch } = useVideo();
@@ -27,7 +28,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
         </div>
         <div className="playlist-card-list">
           {playlistItems.map((item) => (
-            <li>
+            <li key={uuidv4()}>
               <input
                 ref={inputRef}
                 type="checkbox"

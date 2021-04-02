@@ -5,17 +5,48 @@
   grid-area: b;
   list-style: none;
 }
-.playlist-item{
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 5px solid rgb(61, 60, 60);
+
+.playlist-title {
+  width: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
-.playlist-item >h1{
-    margin-bottom: 2rem;
+.playlist-video {
+  cursor: default;
 }
+#delete-icon {
+  color: rgb(61, 60, 60);
+  cursor: pointer;
+}
+
+.playlist-item {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgb(61, 60, 60);
+}
+
+.playlist-play {
+  cursor: pointer;
+}
+
 .playlist-videos {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 1rem;
   row-gap: 2rem;
+}
+
+.delete-video {
+  position: absolute;
+  top: 2%;
+  left: 93%;
+  opacity: 0;
+  color: white;
+  cursor: pointer;
+}
+
+.video-item:hover .delete-video {
+  opacity: 1;
 }

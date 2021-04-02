@@ -1,5 +1,3 @@
-import React from "react";
-
 export function videoReducer(state, { type, video, payload, item }) {
   switch (type) {
     case "ADD_TO_WATCH_LATER":
@@ -24,6 +22,16 @@ export function videoReducer(state, { type, video, payload, item }) {
           ],
         },
       };
+    case "DELETE_VIDEO_FROM_WATCH_LATER":
+      return {
+        ...state,
+        watchLater: [
+          ...state.watchLater.filter((item) => item.id !== video.id),
+        ],
+      };
+    case "DELETE_PLAYLIST":
+      delete state.playList[item];
+      return { ...state };
     default:
       return state;
   }

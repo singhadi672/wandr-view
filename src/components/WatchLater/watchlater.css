@@ -12,7 +12,7 @@
   display: flex;
   background: #222121;
   padding: 1rem;
-  cursor: pointer;
+  justify-content: space-between;
 }
 
 .watch-later-video:hover {
@@ -21,6 +21,7 @@
 
 .watch-later-video > img {
   width: 30%;
+  cursor: pointer;
 }
 
 .watch-later-desc {
@@ -34,5 +35,10 @@
 }
 
 .watch-later-desc > p {
+  color: grey;
+}
+
+.watch-later-delete {
+  cursor: pointer;
   color: grey;
 }

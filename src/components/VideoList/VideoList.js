@@ -15,6 +15,7 @@ export default function VideoList() {
           onClick={() =>
             setYoutubePlayer({ ...youtubePlayer, status: "video", video })
           }
+          key={video.id}
         >
           <img
             src={video["snippet"]["thumbnails"].standard.url}
