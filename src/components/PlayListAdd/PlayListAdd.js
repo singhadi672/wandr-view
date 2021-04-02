@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useVideo } from "../../contexts/video-context";
 import "./playlistAdd.css";
 
@@ -8,6 +8,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
   const { state, dispatch } = useVideo();
   const [newPlaylistRoute, setNewPlaylistRoute] = useState(false);
   const [newPlaylistText, setNewPlaylistText] = useState("");
+  const inputRef = useRef(null);
   console.log(state.playList);
 
   const playlistItems = Object.keys(state.playList);
@@ -28,6 +29,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
           {playlistItems.map((item) => (
             <li>
               <input
+                ref={inputRef}
                 type="checkbox"
                 className="checkbox"
                 checked={

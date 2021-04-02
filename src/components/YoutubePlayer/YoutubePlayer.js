@@ -3,7 +3,7 @@ import {
   faThumbsUp,
   faThumbsDown,
   faClock,
-  faPlay,
+  faIndent,
 } from "@fortawesome/free-solid-svg-icons";
 
 import React, { useState } from "react";
@@ -66,7 +66,7 @@ export function YoutubePlayer() {
                 title="add to My Playlist"
                 onClick={() => setPlaylistWindow((window) => true)}
               >
-                <FontAwesomeIcon icon={faPlay} size="lg" /> My Playlist
+                <FontAwesomeIcon icon={faIndent} size="lg" /> My Playlist
               </button>
             </div>
           </div>

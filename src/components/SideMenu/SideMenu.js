@@ -3,7 +3,7 @@ import {
   faClock,
   faHistory,
   faHome,
-  faPlay,
+  faIndent,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import "./sideMenu.css";
@@ -32,8 +32,13 @@ export function SideMenu() {
           </div>
         </li>
         <li>
-          <div className="menu-item">
-            <FontAwesomeIcon icon={faPlay} size="lg"></FontAwesomeIcon>
+          <div
+            className="menu-item"
+            onClick={() =>
+              setYoutubePlayer({ ...youtubePlayer, status: "playlist" })
+            }
+          >
+            <FontAwesomeIcon icon={faIndent} size="lg"></FontAwesomeIcon>
             <h4>Playlist</h4>
           </div>
         </li>
