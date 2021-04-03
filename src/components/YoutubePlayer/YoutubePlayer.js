@@ -32,10 +32,25 @@ export function YoutubePlayer() {
       : dispatch({ type: "ADD_TO_WATCH_LATER", video });
   }
 
+  function handleHistory(video) {
+    return !!state.videoHistory.find((item) => item.id === video.id)
+      ? null
+      : dispatch({ type: "ADD_TO_HISTORY", video });
+  }
+  function handleLikedVideos(video) {
+    return !!state.likedVideos.find((item) => item.id === video.id)
+      ? null
+      : dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
+  }
+
   return (
     <>
       <div className="player">
-        <YouTube videoId={video.id} opts={opts} />
+        <YouTube
+          videoId={video.id}
+          opts={opts}
+          onPlay={() => handleHistory(video)}
+        />
         <div className="player-desc">
           <h2>{video["snippet"].title}</h2>
           <div className="player-other-info">
@@ -46,7 +61,15 @@ export function YoutubePlayer() {
               </p>
             </div>
             <div className="player-user-options">
-              <div className="count-stat">
+              <div
+                className="count-stat"
+                onClick={() => handleLikedVideos(video)}
+                style={
+                  !!state.likedVideos.find((item) => item.id === video.id)
+                    ? { color: "rgb(16, 134, 231)" }
+                    : null
+                }
+              >
                 <FontAwesomeIcon icon={faThumbsUp} size="lg" />
                 <p>{(video["statistics"].likeCount / 1000).toFixed(0)}K</p>
               </div>
@@ -58,6 +81,11 @@ export function YoutubePlayer() {
                 className="player-btn"
                 title="add to watch later"
                 onClick={() => handleWatchLater(video)}
+                style={
+                  !!state.watchLater.find((item) => item.id === video.id)
+                    ? { color: "rgb(16, 134, 231)" }
+                    : null
+                }
               >
                 <FontAwesomeIcon icon={faClock} size="lg" /> Later
               </button>

@@ -2,16 +2,16 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useVideo } from "../../contexts/video-context";
-import "./watchlater.css";
+// import "./watchlater.css";
 
-export function WatchLater() {
+export function LikedVideos() {
   const { state, setYoutubePlayer, youtubePlayer, dispatch } = useVideo();
-  const { watchLater } = state;
+  const { likedVideos } = state;
 
   {
-    return watchLater.length > 0 ? (
+    return likedVideos.length > 0 ? (
       <div className="watch-later">
-        {watchLater.map((video) => (
+        {likedVideos.map((video) => (
           <div className="watch-later-video" key={video.id}>
             <img
               src={video["snippet"]["thumbnails"].medium.url}
@@ -28,7 +28,7 @@ export function WatchLater() {
               icon={faTrash}
               className="watch-later-delete"
               onClick={() =>
-                dispatch({ type: "DELETE_VIDEO_FROM_WATCH_LATER", video })
+                dispatch({ type: "DELETE_VIDEO_FROM_LIKED_VIDEOS", video })
               }
             />
           </div>
@@ -36,7 +36,7 @@ export function WatchLater() {
       </div>
     ) : (
       <div className="watch-later">
-        <h2 className="no-video">You are all caught up!</h2>
+        <h2 className="no-video">No Liked videos yet!</h2>
       </div>
     );
   }

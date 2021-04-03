@@ -19,7 +19,9 @@ export function VideoProvider({ children }) {
 
   const [state, dispatch] = useReducer(videoReducer, {
     watchLater: [],
-    playList: { 'My Playlist': [] },
+    playList: { "My Playlist": [] },
+    videoHistory: [],
+    likedVideos: [],
   });
 
   useEffect(() => {

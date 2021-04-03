@@ -9,8 +9,8 @@
   width: 95%;
 }
 
-.player-desc >h2{
-    font-weight: 400;
+.player-desc > h2 {
+  font-weight: 400;
 }
 
 .player-other-info {
@@ -37,6 +37,7 @@
 .count-stat {
   display: flex;
   width: 20%;
+  cursor: pointer;
 }
 
 .count-stat > p {

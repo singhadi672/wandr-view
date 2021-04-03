@@ -6,6 +6,8 @@ import { SideMenu } from "./components/SideMenu/SideMenu";
 import { YoutubePlayer } from "./components/YoutubePlayer/YoutubePlayer";
 import { WatchLater } from "./components/WatchLater/WatchLater";
 import { Playlist } from "./components/Playlist/Playlist";
+import { History } from "./components/History/History";
+import { LikedVideos } from "./components/LikedVideos/LikedVideos";
 function App() {
   const { youtubePlayer } = useVideo();
   return (
@@ -17,6 +19,8 @@ function App() {
         {youtubePlayer.status === "video" && <YoutubePlayer />}
         {youtubePlayer.status === "watch-later" && <WatchLater />}
         {youtubePlayer.status === "playlist" && <Playlist />}
+        {youtubePlayer.status === "history" && <History />}
+        {youtubePlayer.status === "liked-videos" && <LikedVideos />}
       </div>
     </div>
   );

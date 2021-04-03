@@ -32,6 +32,19 @@ export function videoReducer(state, { type, video, payload, item }) {
     case "DELETE_PLAYLIST":
       delete state.playList[item];
       return { ...state };
+    case "ADD_TO_HISTORY":
+      return { ...state, videoHistory: [...state.videoHistory, video] };
+    case "CLEAR_HISTORY":
+      return { ...state, videoHistory: [] };
+    case "ADD_TO_LIKED_VIDEOS":
+      return { ...state, likedVideos: [...state.likedVideos, video] };
+    case "DELETE_VIDEO_FROM_LIKED_VIDEOS":
+      return {
+        ...state,
+        likedVideos: [
+          ...state.likedVideos.filter((item) => item.id !== video.id),
+        ],
+      };
     default:
       return state;
   }

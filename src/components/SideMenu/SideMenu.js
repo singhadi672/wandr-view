@@ -4,6 +4,7 @@ import {
   faHistory,
   faHome,
   faIndent,
+  faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import "./sideMenu.css";
@@ -26,7 +27,12 @@ export function SideMenu() {
           </div>
         </li>
         <li>
-          <div className="menu-item">
+          <div
+            className="menu-item"
+            onClick={() =>
+              setYoutubePlayer({ ...youtubePlayer, status: "history" })
+            }
+          >
             <FontAwesomeIcon icon={faHistory} size="lg"></FontAwesomeIcon>
             <h4>History</h4>
           </div>
@@ -51,6 +57,17 @@ export function SideMenu() {
           >
             <FontAwesomeIcon icon={faClock} size="lg"></FontAwesomeIcon>
             <h4>Watch Later</h4>
+          </div>
+        </li>
+        <li>
+          <div
+            className="menu-item"
+            onClick={() =>
+              setYoutubePlayer({ ...youtubePlayer, status: "liked-videos" })
+            }
+          >
+            <FontAwesomeIcon icon={faThumbsUp} size="lg"></FontAwesomeIcon>
+            <h4>Liked Videos</h4>
           </div>
         </li>
       </ul>
