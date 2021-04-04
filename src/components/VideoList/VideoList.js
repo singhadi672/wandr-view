@@ -18,7 +18,7 @@ export default function VideoList() {
           key={video.id}
         >
           <img
-            src={video["snippet"]["thumbnails"].standard.url}
+            src={video["snippet"]["thumbnails"].high.url}
             alt={video.snippet.title}
           />
           <div className="video-desc">
