@@ -1,7 +1,6 @@
 .player {
   grid-area: b;
   margin-top: 1rem;
-  margin-left: 5rem;
   color: white;
 }
 
@@ -51,4 +50,26 @@
   color: grey;
   font-size: 1rem;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1159px) {
+  .player-desc > h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .player-other-info {
+    flex-direction: column;
+    margin-top: 1rem;
+  }
+  .player-count-date {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .player-user-options {
+    align-self: flex-start;
+    /* justify-content: space-evenly; */
+  }
 }

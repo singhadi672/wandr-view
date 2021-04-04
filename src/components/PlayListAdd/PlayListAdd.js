@@ -30,7 +30,6 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
           {playlistItems.map((item) => (
             <li key={uuidv4()}>
               <input
-                ref={inputRef}
                 type="checkbox"
                 className="checkbox"
                 checked={
@@ -64,6 +63,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
           <div className="playlist-new-playlist">
             <input
               type="text"
+              ref={inputRef}
               name="playlist"
               id=""
               placeholder="Playlist name"
@@ -75,6 +75,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
               className="playlist-btn"
               onClick={() => {
                 {
+                  inputRef.current.value = "";
                   return newPlaylistText === ""
                     ? null
                     : dispatch({

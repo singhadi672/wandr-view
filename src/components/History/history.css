@@ -18,3 +18,18 @@
   width: 6%;
   color: rgb(16, 134, 231);
 }
+
+@media screen and (max-width: 800px) {
+  .watch-history {
+    grid-template-columns: 1fr;
+  }
+
+  .clear-history-btn {
+    font-size: 1rem;
+    width: 70px;
+  }
+
+  .watch-later-desc >h3{
+    font-size: 0.9rem;
+  }
+}

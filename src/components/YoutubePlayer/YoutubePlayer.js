@@ -6,24 +6,29 @@ import {
   faIndent,
 } from "@fortawesome/free-solid-svg-icons";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import { useVideo } from "../../contexts/video-context";
 import "./youtubePlayer.css";
 import { PlayListAdd } from "./../PlayListAdd/PlayListAdd";
 export function YoutubePlayer() {
   const [playListWindow, setPlaylistWindow] = useState(false);
+  const [sizeOfWindow, setSizeOfWindow] = useState(window.innerWidth);
   const {
     youtubePlayer: { video },
     state,
     dispatch,
   } = useVideo();
   const opts = {
-    height: "550",
-    width: "95%",
+    height: sizeOfWindow > 900 ? "550" : "300",
+    width: "100%",
     playerVars: {
       autoplay: 1,
     },
+  };
+
+  window.onresize = () => {
+    setSizeOfWindow(window.innerWidth);
   };
 
   function handleWatchLater(video) {

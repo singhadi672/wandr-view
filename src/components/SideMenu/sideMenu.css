@@ -30,3 +30,9 @@
 .menu-item:hover {
   background: #4d4d4d;
 }
+
+@media screen and (max-width: 1159px) {
+  .side-menu {
+    display: none;
+  }
+}

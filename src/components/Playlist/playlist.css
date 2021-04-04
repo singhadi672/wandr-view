@@ -54,3 +54,32 @@
 .no-video-playlist {
   color: grey;
 }
+
+@media screen and (max-width: 995px) {
+  .playlist-videos {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .playlist-title > h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .playlist-videos {
+    grid-template-columns: 1fr 1fr;
+  }
+  .playlist-title > h1 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .playlist-videos {
+    grid-template-columns: 1fr;
+  }
+
+  .playlist-title{
+    width: 50%;
+  }
+}

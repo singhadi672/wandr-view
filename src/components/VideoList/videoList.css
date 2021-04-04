@@ -53,3 +53,21 @@
   font-size: 0.9rem;
   color: grey;
 }
+
+@media screen and (max-width: 995px) {
+  .videolist {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .videolist {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .videolist {
+    grid-template-columns: 1fr;
+  }
+}
