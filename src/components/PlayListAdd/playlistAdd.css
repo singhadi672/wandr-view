@@ -73,6 +73,7 @@ input.checkbox {
   border-bottom: 1px solid grey;
   color: white;
   padding: 0.5rem;
+  width: 70%;
 }
 
 .playlist-btn {
@@ -84,9 +85,16 @@ input.checkbox {
   cursor: pointer;
 }
 
+@media screen and (max-width: 1523px) {
+}
+
 @media screen and (max-width: 1159px) {
   .playlist-add {
     height: 100vh;
+  }
+
+  input[type="text"] {
+    width: 4px;
   }
 }
 
