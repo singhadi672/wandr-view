@@ -6,7 +6,7 @@ import {
   faIndent,
 } from "@fortawesome/free-solid-svg-icons";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import YouTube from "react-youtube";
 import { useVideo } from "../../contexts/video-context";
 import "./youtubePlayer.css";

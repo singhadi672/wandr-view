@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import YouTube from "react-youtube";
+import React from "react";
 import { useVideo } from "../../contexts/video-context";
-import { YoutubePlayer } from "../YoutubePlayer/YoutubePlayer";
 import "./videoList.css";
 
 export default function VideoList() {

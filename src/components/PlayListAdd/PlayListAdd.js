@@ -10,7 +10,6 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
   const [newPlaylistRoute, setNewPlaylistRoute] = useState(false);
   const [newPlaylistText, setNewPlaylistText] = useState("");
   const inputRef = useRef(null);
-  console.log(state.playList);
 
   const playlistItems = Object.keys(state.playList);
 
