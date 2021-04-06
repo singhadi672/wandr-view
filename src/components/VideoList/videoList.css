@@ -1,7 +1,7 @@
 .videolist {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  row-gap: 3rem;
+  row-gap: 2rem;
   justify-content: center;
   align-items: center;
   column-gap: 1rem;
@@ -16,6 +16,7 @@
   height: 19rem;
   cursor: pointer;
   position: relative;
+  padding: 0.5rem;
 }
 
 .video-item:hover {

@@ -17,6 +17,8 @@ export function VideoProvider({ children }) {
     status: "home",
   });
 
+  const [searchString, setSearchString] = useState("");
+
   const [state, dispatch] = useReducer(videoReducer, {
     watchLater: [],
     playList: { "My Playlist": [] },
@@ -38,6 +40,8 @@ export function VideoProvider({ children }) {
         videoList,
         setVideoList,
         youtubePlayer,
+        searchString,
+        setSearchString,
         setYoutubePlayer,
         state,
         dispatch,

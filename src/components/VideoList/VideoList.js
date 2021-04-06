@@ -5,11 +5,24 @@ import { YoutubePlayer } from "../YoutubePlayer/YoutubePlayer";
 import "./videoList.css";
 
 export default function VideoList() {
-  const { videoList, setYoutubePlayer, youtubePlayer } = useVideo();
+  const {
+    videoList,
+    setYoutubePlayer,
+    youtubePlayer,
+    searchString,
+  } = useVideo();
+
+  function searchData(videoList, searchString) {
+    return videoList.filter((item) =>
+      item["snippet"].title.toLowerCase().includes(searchString.toLowerCase())
+    );
+  }
+
+  const searchedData = searchData(videoList, searchString);
 
   return (
     <div className="videolist">
-      {videoList.map((video) => (
+      {searchedData.map((video) => (
         <div
           className="video-item"
           onClick={() =>

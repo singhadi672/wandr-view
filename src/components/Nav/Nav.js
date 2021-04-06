@@ -12,7 +12,11 @@ import {
 import { useVideo } from "../../contexts/video-context";
 
 export function Nav() {
-  const { youtubePlayer, setYoutubePlayer } = useVideo();
+  const {
+    youtubePlayer,
+    setYoutubePlayer,
+    setSearchString,
+  } = useVideo();
   return (
     <nav className="main-nav">
       <div className="logo">
@@ -23,7 +27,14 @@ export function Nav() {
         <h1 className="logo-caption">Wandr-View</h1>
       </div>
       <div className="nav-search">
-        <input type="text" name="search" placeholder="Search" />
+        <input
+          type="text"
+          name="search"
+          placeholder="Search by video title"
+          onChange={(e) => {
+            setSearchString(e.target.value);
+          }}
+        />
         <button className="nav-btn search-btn">
           <FontAwesomeIcon icon={faSearch} size="lg" />
         </button>
