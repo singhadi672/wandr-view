@@ -10,13 +10,10 @@ import {
   faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { useVideo } from "../../contexts/video-context";
+import { NavLink } from "react-router-dom";
 
 export function Nav() {
-  const {
-    youtubePlayer,
-    setYoutubePlayer,
-    setSearchString,
-  } = useVideo();
+  const { setSearchString } = useVideo();
   return (
     <nav className="main-nav">
       <div className="logo">
@@ -40,44 +37,43 @@ export function Nav() {
         </button>
       </div>
       <div className="nav-options">
-        <button
-          className="nav-btn option-btn"
-          onClick={() => setYoutubePlayer({ ...youtubePlayer, status: "home" })}
+        <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
+          <button className="nav-btn option-btn">
+            <FontAwesomeIcon icon={faHome} size="lg" />
+          </button>
+        </NavLink>
+        <NavLink
+          to="history"
+          style={{ textDecoration: "none", color: "white" }}
         >
-          <FontAwesomeIcon icon={faHome} size="lg" />
-        </button>
-        <button
-          className="nav-btn option-btn"
-          onClick={() =>
-            setYoutubePlayer({ ...youtubePlayer, status: "history" })
-          }
+          <button className="nav-btn option-btn">
+            <FontAwesomeIcon icon={faHistory} size="lg" />
+          </button>
+        </NavLink>
+        <NavLink
+          to="playlist"
+          style={{ textDecoration: "none", color: "white" }}
         >
-          <FontAwesomeIcon icon={faHistory} size="lg" />
-        </button>
-        <button
-          className="nav-btn option-btn"
-          onClick={() =>
-            setYoutubePlayer({ ...youtubePlayer, status: "playlist" })
-          }
+          <button className="nav-btn option-btn">
+            <FontAwesomeIcon icon={faIndent} size="lg" />
+          </button>
+        </NavLink>
+        <NavLink
+          to="watch-later"
+          style={{ textDecoration: "none", color: "white" }}
         >
-          <FontAwesomeIcon icon={faIndent} size="lg" />
-        </button>
-        <button
-          className="nav-btn option-btn"
-          onClick={() =>
-            setYoutubePlayer({ ...youtubePlayer, status: "watch-later" })
-          }
+          <button className="nav-btn option-btn">
+            <FontAwesomeIcon icon={faClock} size="lg" />
+          </button>
+        </NavLink>
+        <NavLink
+          to="liked-videos"
+          style={{ textDecoration: "none", color: "white" }}
         >
-          <FontAwesomeIcon icon={faClock} size="lg" />
-        </button>
-        <button
-          className="nav-btn option-btn"
-          onClick={() =>
-            setYoutubePlayer({ ...youtubePlayer, status: "liked-videos" })
-          }
-        >
-          <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-        </button>
+          <button className="nav-btn option-btn">
+            <FontAwesomeIcon icon={faThumbsUp} size="lg" />
+          </button>
+        </NavLink>
         <div className="avatar">
           <p>US</p>
         </div>
