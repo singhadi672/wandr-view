@@ -3,11 +3,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { VideoProvider } from "./contexts/video-context";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
     <VideoProvider>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </VideoProvider>
   </React.StrictMode>,
   document.getElementById("root")

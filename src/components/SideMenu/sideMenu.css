@@ -28,6 +28,10 @@
 }
 
 .menu-item:hover {
+  background: #181616;
+}
+
+.selected{
   background: #4d4d4d;
 }
 

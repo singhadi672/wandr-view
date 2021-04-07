@@ -13,10 +13,6 @@ export const VideoContext = createContext();
 
 export function VideoProvider({ children }) {
   const [videoList, setVideoList] = useState([]);
-  const [youtubePlayer, setYoutubePlayer] = useState({
-    status: "home",
-  });
-
   const [searchString, setSearchString] = useState("");
 
   const [state, dispatch] = useReducer(videoReducer, {
@@ -39,10 +35,8 @@ export function VideoProvider({ children }) {
       value={{
         videoList,
         setVideoList,
-        youtubePlayer,
         searchString,
         setSearchString,
-        setYoutubePlayer,
         state,
         dispatch,
       }}

@@ -13,6 +13,7 @@
   background: #222121;
   padding: 1rem;
   justify-content: space-between;
+  height: 140px;
 }
 
 .watch-later-video:hover {
@@ -58,7 +59,7 @@
     width: 70px;
   }
 
-  .watch-later-desc >h3{
+  .watch-later-desc > h3 {
     font-size: 0.9rem;
   }
 }

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useVideo } from "../../contexts/video-context";
 import "./watchlater.css";
+import { NavLink } from "react-router-dom";
 
 export function WatchLater() {
   const { state, setYoutubePlayer, youtubePlayer, dispatch } = useVideo();
@@ -13,13 +14,16 @@ export function WatchLater() {
       <div className="watch-later">
         {watchLater.map((video) => (
           <div className="watch-later-video" key={video.id}>
-            <img
-              src={video["snippet"]["thumbnails"].medium.url}
-              alt={video["snippet"].title}
-              onClick={() =>
-                setYoutubePlayer({ ...youtubePlayer, status: "video", video })
-              }
-            />
+            <NavLink
+              to={`/video?id=${video.id}`}
+              style={{ textDecoration: "none", color: "white", width: "12rem" }}
+            >
+              <img
+                src={video["snippet"]["thumbnails"].medium.url}
+                alt={video["snippet"].title}
+                style={{ height: "100%" }}
+              />
+            </NavLink>
             <div className="watch-later-desc">
               <h3>{video["snippet"].title}</h3>
               <p>{video["snippet"].channelTitle}</p>

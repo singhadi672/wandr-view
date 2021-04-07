@@ -88,12 +88,15 @@ input:-webkit-autofill:focus {
   -webkit-text-fill-color: white;
 }
 
+@media screen and (max-width: 1159px) {
+  .nav-search {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 995px) {
   .main-nav {
     flex-direction: row;
-  }
-  .nav-search {
-    display: none;
   }
 
   .nav-options {

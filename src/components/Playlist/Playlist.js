@@ -3,6 +3,7 @@ import "./playlist.css";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 export function Playlist() {
   const { state, dispatch, youtubePlayer, setYoutubePlayer } = useVideo();
@@ -29,30 +30,30 @@ export function Playlist() {
                     src={video["snippet"]["thumbnails"].standard.url}
                     alt={video.snippet.title}
                   />
-                  <div
-                    className="video-desc playlist-play"
-                    onClick={() =>
-                      setYoutubePlayer({
-                        ...youtubePlayer,
-                        status: "video",
-                        video,
-                      })
-                    }
+                  <NavLink
+                    to={`/video?id=${video.id}`}
+                    style={{ textDecoration: "none", color: "white" }}
                   >
-                    <h4>{video["snippet"].title}</h4>
-                    <div>
-                      <p id="channel-title">
-                        {video["snippet"]["channelTitle"]}
-                      </p>
-                      <div className="video-views">
-                        <p>
-                          {(video["statistics"].viewCount / 1000000).toFixed(2)}
-                          M views
+                    <div className="video-desc playlist-play">
+                      <h4>{video["snippet"].title}</h4>
+                      <div>
+                        <p id="channel-title">
+                          {video["snippet"]["channelTitle"]}
                         </p>
-                        <p>{Date(video["snippet"].publishedAt).slice(3, 15)}</p>
+                        <div className="video-views">
+                          <p>
+                            {(video["statistics"].viewCount / 1000000).toFixed(
+                              2
+                            )}
+                            M views
+                          </p>
+                          <p>
+                            {Date(video["snippet"].publishedAt).slice(3, 15)}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </NavLink>
                   <FontAwesomeIcon
                     icon={faTrash}
                     className="delete-video"

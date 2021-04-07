@@ -17,6 +17,7 @@
   cursor: pointer;
   position: relative;
   padding: 0.5rem;
+  text-decoration: none;
 }
 
 .video-item:hover {

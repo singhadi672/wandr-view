@@ -8,19 +8,23 @@ import { WatchLater } from "./components/WatchLater/WatchLater";
 import { Playlist } from "./components/Playlist/Playlist";
 import { History } from "./components/History/History";
 import { LikedVideos } from "./components/LikedVideos/LikedVideos";
+import { Error } from "./components/Error/Error";
+import { Routes, Route } from "react-router-dom";
 function App() {
-  const { youtubePlayer } = useVideo();
   return (
     <div className="App">
       <Nav />
       <div className="content">
         <SideMenu />
-        {youtubePlayer.status === "home" && <VideoList />}
-        {youtubePlayer.status === "video" && <YoutubePlayer />}
-        {youtubePlayer.status === "watch-later" && <WatchLater />}
-        {youtubePlayer.status === "playlist" && <Playlist />}
-        {youtubePlayer.status === "history" && <History />}
-        {youtubePlayer.status === "liked-videos" && <LikedVideos />}
+        <Routes>
+          <Route path="/" element={<VideoList />}></Route>
+          <Route path="/video" exact element={<YoutubePlayer />}></Route>
+          <Route path="/watch-later" element={<WatchLater />}></Route>
+          <Route path="/playlist" element={<Playlist />}></Route>
+          <Route path="/history" exact element={<History />}></Route>
+          <Route path="/liked-videos" element={<LikedVideos />}></Route>
+          <Route path="*" element={<Error />}></Route>
+        </Routes>
       </div>
     </div>
   );

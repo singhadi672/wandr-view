@@ -21,6 +21,16 @@ body {
   margin: 3.8rem 1rem 1rem 0rem;
 }
 
+::-webkit-scrollbar {
+  background: none;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2e2e;
+  border-radius: 15px;
+}
+
 @media screen and (max-width: 1159px) {
   .content {
     grid-template-areas:

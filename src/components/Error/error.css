@@ -1,0 +1,43 @@
+.error {
+  grid-area: b;
+  grid-template-columns: 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  display: grid;
+  color: white;
+  margin-top: 1rem;
+}
+
+.error-modal {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70%;
+  height: 500px;
+  background: #202020;
+  padding: 1.3rem;
+  text-align: center;
+}
+
+.link {
+  text-decoration: none;
+  color: grey;
+  font-size: 1.3rem;
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.error-modal > h1 {
+  font-size: 5rem;
+}
+.error-modal > p {
+  font-size: 2rem;
+  color: grey;
+}

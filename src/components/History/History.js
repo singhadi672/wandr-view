@@ -1,7 +1,8 @@
 import { useVideo } from "../../contexts/video-context";
 import "./history.css";
+import { NavLink } from "react-router-dom";
 export function History() {
-  const { state, setYoutubePlayer, youtubePlayer, dispatch } = useVideo();
+  const { state, dispatch } = useVideo();
   const { videoHistory } = state;
 
   {
@@ -15,22 +16,21 @@ export function History() {
         </div>
         <div className="watch-history">
           {videoHistory.map((video) => (
-            <div
-              className="watch-later-video"
-              key={video.id}
-              onClick={() =>
-                setYoutubePlayer({ ...youtubePlayer, status: "video", video })
-              }
+            <NavLink
+              to={`/video?id=${video.id}`}
+              style={{ textDecoration: "none", color: "white" }}
             >
-              <img
-                src={video["snippet"]["thumbnails"].medium.url}
-                alt={video["snippet"].title}
-              />
-              <div className="watch-later-desc">
-                <h3>{video["snippet"].title}</h3>
-                <p>{video["snippet"].channelTitle}</p>
+              <div className="watch-later-video" key={video.id}>
+                <img
+                  src={video["snippet"]["thumbnails"].medium.url}
+                  alt={video["snippet"].title}
+                />
+                <div className="watch-later-desc">
+                  <h3>{video["snippet"].title}</h3>
+                  <p>{video["snippet"].channelTitle}</p>
+                </div>
               </div>
-            </div>
+            </NavLink>
           ))}
         </div>
       </div>
