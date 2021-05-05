@@ -45,7 +45,7 @@ export function YoutubePlayer() {
   }
   function handleLikedVideos(video) {
     return !!state.likedVideos.find((item) => item.id === video.id)
-      ? null
+      ? dispatch({ type: "DELETE_VIDEO_FROM_LIKED_VIDEOS", video })
       : dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
   }
 
@@ -74,7 +74,7 @@ export function YoutubePlayer() {
                   style={
                     !!state.likedVideos.find((item) => item.id === video.id)
                       ? { color: "rgb(16, 134, 231)" }
-                      : null
+                      : { color: "grey" }
                   }
                 >
                   <FontAwesomeIcon icon={faThumbsUp} size="lg" />
