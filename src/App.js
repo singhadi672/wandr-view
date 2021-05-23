@@ -10,7 +10,10 @@ import { History } from "./components/History/History";
 import { LikedVideos } from "./components/LikedVideos/LikedVideos";
 import { Error } from "./components/Error/Error";
 import { Routes, Route } from "react-router-dom";
+import Loader from "./components/Loader/Loader";
 function App() {
+  const { loader } = useVideo();
+
   return (
     <div className="App">
       <Nav />
@@ -26,6 +29,7 @@ function App() {
           <Route path="*" element={<Error />}></Route>
         </Routes>
       </div>
+      {loader && <Loader />}
     </div>
   );
 }

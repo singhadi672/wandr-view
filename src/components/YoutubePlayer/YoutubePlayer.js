@@ -12,6 +12,8 @@ import { useVideo } from "../../contexts/video-context";
 import "./youtubePlayer.css";
 import { PlayListAdd } from "./../PlayListAdd/PlayListAdd";
 import { useLocation, useParams } from "react-router-dom";
+import { axiosCall } from "../../utilData";
+import axios from "axios";
 export function YoutubePlayer() {
   const [playListWindow, setPlaylistWindow] = useState(false);
   const [sizeOfWindow, setSizeOfWindow] = useState(window.innerWidth);
@@ -30,23 +32,63 @@ export function YoutubePlayer() {
 
   const query = new URLSearchParams(useLocation().search);
 
-  const video = videoList.find((item) => item.id === query.get("id"));
+  const video = videoList.find((item) => item.items[0].id === query.get("id"));
 
-  function handleWatchLater(video) {
-    return !!state.watchLater.find((item) => item.id === video.id)
-      ? null
-      : dispatch({ type: "ADD_TO_WATCH_LATER", video });
+  async function handleWatchLater(video) {
+    try {
+      if (!!state.watchLater.find((item) => item._id === video._id)) {
+        const response = await axios.post(
+          "https://serene-badlands-15662.herokuapp.com/watch-later",
+          { id: video._id }
+        );
+        dispatch({
+          type: "DELETE_VIDEO_FROM_WATCH_LATER",
+          video,
+        });
+      } else {
+        const response = await axios.post(
+          "https://serene-badlands-15662.herokuapp.com/watch-later",
+          { id: video._id }
+        );
+        dispatch({ type: "ADD_TO_WATCH_LATER", video });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  function handleHistory(video) {
-    return !!state.videoHistory.find((item) => item.id === video.id)
-      ? null
-      : dispatch({ type: "ADD_TO_HISTORY", video });
+  async function handleHistory(video) {
+    if (!!state.videoHistory.find((item) => item._id === video._id)) {
+    } else {
+      const response = await axios.post(
+        "https://serene-badlands-15662.herokuapp.com/history",
+        { id: video._id }
+      );
+      dispatch({ type: "ADD_TO_HISTORY", video });
+    }
   }
-  function handleLikedVideos(video) {
-    return !!state.likedVideos.find((item) => item.id === video.id)
-      ? dispatch({ type: "DELETE_VIDEO_FROM_LIKED_VIDEOS", video })
-      : dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
+
+  async function handleLikedVideos(video) {
+    try {
+      if (!!state.likedVideos.find((item) => item._id === video._id)) {
+        const response = await axios.post(
+          "https://serene-badlands-15662.herokuapp.com/liked-videos",
+          { id: video._id }
+        );
+        dispatch({
+          type: "DELETE_VIDEO_FROM_LIKED_VIDEOS",
+          video,
+        });
+      } else {
+        const response = await axios.post(
+          "https://serene-badlands-15662.herokuapp.com/liked-videos",
+          { id: video._id }
+        );
+        dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   {
@@ -54,17 +96,17 @@ export function YoutubePlayer() {
       <>
         <div className="player">
           <YouTube
-            videoId={video.id}
+            videoId={video.items[0].id}
             opts={opts}
             onPlay={() => handleHistory(video)}
           />
           <div className="player-desc">
-            <h2>{video["snippet"].title}</h2>
+            <h2>{video.items[0]["snippet"].title}</h2>
             <div className="player-other-info">
               <div className="player-count-date">
                 <p>
-                  {video["statistics"].viewCount} views |
-                  {Date(video["snippet"].publishedAt).slice(3, 15)}
+                  {video.items[0]["statistics"].viewCount} views |
+                  {Date(video.items[0]["snippet"].publishedAt).slice(3, 15)}
                 </p>
               </div>
               <div className="player-user-options">
@@ -72,24 +114,32 @@ export function YoutubePlayer() {
                   className="count-stat"
                   onClick={() => handleLikedVideos(video)}
                   style={
-                    !!state.likedVideos.find((item) => item.id === video.id)
+                    !!state.likedVideos.find((item) => item._id === video._id)
                       ? { color: "rgb(16, 134, 231)" }
                       : { color: "grey" }
                   }
                 >
                   <FontAwesomeIcon icon={faThumbsUp} size="lg" />
-                  <p>{(video["statistics"].likeCount / 1000).toFixed(0)}K</p>
+                  <p>
+                    {(video.items[0]["statistics"].likeCount / 1000).toFixed(0)}
+                    K
+                  </p>
                 </div>
                 <div className="count-stat">
                   <FontAwesomeIcon icon={faThumbsDown} size="lg" />
-                  <p>{(video["statistics"].dislikeCount / 1000).toFixed(0)}K</p>
+                  <p>
+                    {(video.items[0]["statistics"].dislikeCount / 1000).toFixed(
+                      0
+                    )}
+                    K
+                  </p>
                 </div>
                 <button
                   className="player-btn"
                   title="add to watch later"
                   onClick={() => handleWatchLater(video)}
                   style={
-                    !!state.watchLater.find((item) => item.id === video.id)
+                    !!state.watchLater.find((item) => item._id === video._id)
                       ? { color: "rgb(16, 134, 231)" }
                       : null
                   }

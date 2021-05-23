@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { useVideo } from "../../contexts/video-context";
 import "./playlistAdd.css";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
 export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
   const { state, dispatch } = useVideo();
@@ -11,7 +12,72 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
   const [newPlaylistText, setNewPlaylistText] = useState("");
   const inputRef = useRef(null);
 
-  const playlistItems = Object.keys(state.playList);
+  const playlistItems = state.playlist?.map((item) => {
+    return item.playlistName;
+  });
+
+  function findVideoInPlaylist(item, video) {
+    const targetPlaylist = state.playlist.find(
+      (playlist) => playlist.playlistName == item
+    );
+    return !!targetPlaylist.playlistVideos.find((vid) => vid._id == video._id);
+  }
+
+  async function handelAddVideo(video, item) {
+    const targetPlaylist = state.playlist.find(
+      (playlist) => playlist.playlistName == item
+    );
+
+    const isVideoPresent = !!targetPlaylist.playlistVideos.find(
+      (vid) => vid._id == video._id
+    );
+    if (isVideoPresent) {
+      const response = await axios.post(
+        "https://serene-badlands-15662.herokuapp.com/playlist/video",
+        { playlistId: targetPlaylist._id, videoId: video._id }
+      );
+      if (response.data.status) {
+        dispatch({
+          type: "REMOVE_VIDEO_FROM_PLAYLIST",
+          video,
+          item,
+        });
+      }
+    } else {
+      const response = await axios.post(
+        "https://serene-badlands-15662.herokuapp.com/playlist/video",
+        { playlistId: targetPlaylist._id, videoId: video._id }
+      );
+      if (response.data.status) {
+        dispatch({
+          type: "ADD_VIDEO_TO_PLAYLIST",
+          video,
+          item,
+        });
+      }
+    }
+  }
+
+  async function handleAddPlaylist(text) {
+    const isPlaylist = !!state.playlist.find(
+      (playlist) => playlist.playlistName == text
+    );
+    console.log(isPlaylist);
+    if (isPlaylist && text !== "") {
+    } else {
+      const response = await axios.post(
+        "https://serene-badlands-15662.herokuapp.com/playlist",
+        { playlistName: text }
+      );
+      if (response.data.status) {
+        inputRef.current.value = "";
+        dispatch({
+          type: "ADD_NEW_PLAYLIST",
+          payload: text,
+        });
+      }
+    }
+  }
 
   return (
     <>
@@ -31,28 +97,10 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
               <input
                 type="checkbox"
                 className="checkbox"
-                checked={
-                  state.playList[item].find((item) => item.id === video.id)
-                    ? true
-                    : false
-                }
+                checked={findVideoInPlaylist(item, video) ? true : false}
                 name=""
                 id=""
-                onChange={() => {
-                  return state.playList[item].find(
-                    (item) => item.id === video.id
-                  )
-                    ? dispatch({
-                        type: "REMOVE_VIDEO_FROM_PLAYLIST",
-                        video,
-                        item,
-                      })
-                    : dispatch({
-                        type: "ADD_VIDEO_TO_PLAYLIST",
-                        video,
-                        item,
-                      });
-                }}
+                onChange={() => handelAddVideo(video, item)}
               />
               <p>{item}</p>
             </li>
@@ -72,17 +120,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
             />
             <button
               className="playlist-btn"
-              onClick={() => {
-                {
-                  inputRef.current.value = "";
-                  return newPlaylistText === ""
-                    ? null
-                    : dispatch({
-                        type: "ADD_NEW_PLAYLIST",
-                        payload: newPlaylistText,
-                      });
-                }
-              }}
+              onClick={() => handleAddPlaylist(newPlaylistText)}
             >
               Create
             </button>

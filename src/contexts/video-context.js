@@ -8,16 +8,18 @@ import {
 } from "react";
 import { API_KEY, YOUTUBE_LINK } from "../utilData";
 import { videoReducer } from "./../reducers/video-reducer";
+import { axiosCall } from "../utilData";
 
 export const VideoContext = createContext();
 
 export function VideoProvider({ children }) {
   const [videoList, setVideoList] = useState([]);
   const [searchString, setSearchString] = useState("");
+  const [loader, setLoader] = useState(true);
 
   const [state, dispatch] = useReducer(videoReducer, {
     watchLater: [],
-    playList: { "My Playlist": [] },
+    playlist: [],
     videoHistory: [],
     likedVideos: [],
   });
@@ -25,9 +27,21 @@ export function VideoProvider({ children }) {
   useEffect(() => {
     (async () => {
       const {
-        data: { items },
-      } = await axios.get(`${YOUTUBE_LINK}&key=${API_KEY}`);
-      setVideoList(items);
+        data: { videos },
+      } = await axiosCall(
+        "GET",
+        "https://serene-badlands-15662.herokuapp.com/videos"
+      );
+
+      const {
+        data: { user },
+      } = await axiosCall(
+        "GET",
+        "https://serene-badlands-15662.herokuapp.com/users"
+      );
+      dispatch({ type: "ADD_INITIAL_DATA", payload: user });
+      setVideoList(videos);
+      setLoader(false);
     })();
   }, []);
   return (
@@ -39,6 +53,7 @@ export function VideoProvider({ children }) {
         setSearchString,
         state,
         dispatch,
+        loader,
       }}
     >
       {children}
