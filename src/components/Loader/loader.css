@@ -4,9 +4,8 @@
   top: 0;
   height: 100%;
   background: #17181a;
-  opacity: 0.7;
   display: flex;
-  z-index: 4;
+  z-index: 5;
   justify-content: center;
   align-items: center;
 }

@@ -5,17 +5,19 @@ import axios from "axios";
 import { useVideo } from "../../contexts/video-context";
 import "./watchlater.css";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../contexts/auth-context";
 
 export function WatchLater() {
-  const { state, setYoutubePlayer, youtubePlayer, dispatch } = useVideo();
+  const { setYoutubePlayer, youtubePlayer } = useVideo();
+  const { state, dispatch } = useAuth();
   const { watchLater } = state;
 
-  async function handleWatchLater(video){
-     const response = await axios.post(
-       "https://serene-badlands-15662.herokuapp.com/watch-later",
-       { id: video._id }
-     );
-     dispatch({ type: "DELETE_VIDEO_FROM_WATCH_LATER", video });
+  async function handleWatchLater(video) {
+    const response = await axios.post(
+      "https://fast-savannah-42620.herokuapp.com/watch-later",
+      { id: video._id }
+    );
+    dispatch({ type: "DELETE_VIDEO_FROM_WATCH_LATER", video });
   }
 
   {

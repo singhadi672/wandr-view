@@ -10,9 +10,13 @@ import { History } from "./components/History/History";
 import { LikedVideos } from "./components/LikedVideos/LikedVideos";
 import { Error } from "./components/Error/Error";
 import { Routes, Route } from "react-router-dom";
+import Login from "./components/Login/Login";
+import Signup from "./components/Signup/Signup";
 import Loader from "./components/Loader/Loader";
+import { useAuth } from "./contexts/auth-context";
 function App() {
   const { loader } = useVideo();
+  const { PrivateRoute } = useAuth();
 
   return (
     <div className="App">
@@ -21,11 +25,23 @@ function App() {
         <SideMenu />
         <Routes>
           <Route path="/" element={<VideoList />}></Route>
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<Signup />}></Route>
           <Route path="/video" exact element={<YoutubePlayer />}></Route>
-          <Route path="/watch-later" element={<WatchLater />}></Route>
-          <Route path="/playlist" element={<Playlist />}></Route>
-          <Route path="/history" exact element={<History />}></Route>
-          <Route path="/liked-videos" element={<LikedVideos />}></Route>
+          <PrivateRoute
+            path="/watch-later"
+            element={<WatchLater />}
+          ></PrivateRoute>
+          <PrivateRoute path="/playlist" element={<Playlist />}></PrivateRoute>
+          <PrivateRoute
+            path="/history"
+            exact
+            element={<History />}
+          ></PrivateRoute>
+          <PrivateRoute
+            path="/liked-videos"
+            element={<LikedVideos />}
+          ></PrivateRoute>
           <Route path="*" element={<Error />}></Route>
         </Routes>
       </div>

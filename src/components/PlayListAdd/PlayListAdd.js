@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useRef, useState } from "react";
-import { useVideo } from "../../contexts/video-context";
 import "./playlistAdd.css";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { useAuth } from "../../contexts/auth-context";
 
 export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
-  const { state, dispatch } = useVideo();
+  const { state, dispatch } = useAuth();
   const [newPlaylistRoute, setNewPlaylistRoute] = useState(false);
   const [newPlaylistText, setNewPlaylistText] = useState("");
   const inputRef = useRef(null);
@@ -33,7 +33,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
     );
     if (isVideoPresent) {
       const response = await axios.post(
-        "https://serene-badlands-15662.herokuapp.com/playlist/video",
+        "https://fast-savannah-42620.herokuapp.com/playlist/video",
         { playlistId: targetPlaylist._id, videoId: video._id }
       );
       if (response.data.status) {
@@ -45,7 +45,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
       }
     } else {
       const response = await axios.post(
-        "https://serene-badlands-15662.herokuapp.com/playlist/video",
+        "https://fast-savannah-42620.herokuapp.com/playlist/video",
         { playlistId: targetPlaylist._id, videoId: video._id }
       );
       if (response.data.status) {
@@ -62,18 +62,20 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
     const isPlaylist = !!state.playlist.find(
       (playlist) => playlist.playlistName == text
     );
-    console.log(isPlaylist);
+
     if (isPlaylist && text !== "") {
     } else {
       const response = await axios.post(
-        "https://serene-badlands-15662.herokuapp.com/playlist",
-        { playlistName: text }
+        "https://fast-savannah-42620.herokuapp.com/playlist",
+        {
+          playlistName: text,
+        }
       );
       if (response.data.status) {
         inputRef.current.value = "";
         dispatch({
           type: "ADD_NEW_PLAYLIST",
-          payload: text,
+          payload: { text, playlistID: response.data.playlistID },
         });
       }
     }

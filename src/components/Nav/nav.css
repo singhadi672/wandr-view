@@ -79,6 +79,7 @@
   padding: 0.4rem;
   background: #00579c;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 input:-webkit-autofill,

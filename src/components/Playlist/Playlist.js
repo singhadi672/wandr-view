@@ -1,13 +1,14 @@
-import { useVideo } from "./../../contexts/video-context";
+
 import "./playlist.css";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../contexts/auth-context";
 
 export function Playlist() {
-  const { state, dispatch, youtubePlayer, setYoutubePlayer } = useVideo();
+  const { state, dispatch } = useAuth();
   const playlistItem = state.playlist?.map((item) => {
     return item.playlistName;
   });
@@ -22,7 +23,7 @@ export function Playlist() {
       (playlist) => playlist.playlistName == item
     )._id;
     const response = await axios.post(
-      "https://serene-badlands-15662.herokuapp.com/playlist/video",
+      "https://fast-savannah-42620.herokuapp.com/playlist/video",
       { videoId: video._id, playlistId }
     );
     if (response.data.status) {
@@ -36,7 +37,7 @@ export function Playlist() {
 
   async function handleDeletePlaylist(item) {
     const response = await axios.post(
-      "https://serene-badlands-15662.herokuapp.com/playlist",
+      "https://fast-savannah-42620.herokuapp.com/playlist",
       { playlistName: item }
     );
 

@@ -11,13 +11,14 @@ import YouTube from "react-youtube";
 import { useVideo } from "../../contexts/video-context";
 import "./youtubePlayer.css";
 import { PlayListAdd } from "./../PlayListAdd/PlayListAdd";
-import { useLocation, useParams } from "react-router-dom";
-import { axiosCall } from "../../utilData";
+import { useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../contexts/auth-context";
 export function YoutubePlayer() {
   const [playListWindow, setPlaylistWindow] = useState(false);
   const [sizeOfWindow, setSizeOfWindow] = useState(window.innerWidth);
-  const { state, dispatch, videoList } = useVideo();
+  const { videoList } = useVideo();
+  const { state, dispatch, login } = useAuth();
   const opts = {
     height: sizeOfWindow > 900 ? "550" : "300",
     width: "100%",
@@ -31,63 +32,80 @@ export function YoutubePlayer() {
   };
 
   const query = new URLSearchParams(useLocation().search);
+  let navigate = useNavigate();
 
   const video = videoList.find((item) => item.items[0].id === query.get("id"));
 
   async function handleWatchLater(video) {
-    try {
-      if (!!state.watchLater.find((item) => item._id === video._id)) {
-        const response = await axios.post(
-          "https://serene-badlands-15662.herokuapp.com/watch-later",
-          { id: video._id }
-        );
-        dispatch({
-          type: "DELETE_VIDEO_FROM_WATCH_LATER",
-          video,
-        });
-      } else {
-        const response = await axios.post(
-          "https://serene-badlands-15662.herokuapp.com/watch-later",
-          { id: video._id }
-        );
-        dispatch({ type: "ADD_TO_WATCH_LATER", video });
+    if (login) {
+      try {
+        if (!!state.watchLater.find((item) => item._id === video._id)) {
+          const response = await axios.post(
+            "https://fast-savannah-42620.herokuapp.com/watch-later",
+            {
+              id: video._id,
+            }
+          );
+          dispatch({
+            type: "DELETE_VIDEO_FROM_WATCH_LATER",
+            video,
+          });
+        } else {
+          const response = await axios.post(
+            "https://fast-savannah-42620.herokuapp.com/watch-later",
+            {
+              id: video._id,
+            }
+          );
+          dispatch({ type: "ADD_TO_WATCH_LATER", video });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      navigate("../login");
     }
   }
 
   async function handleHistory(video) {
-    if (!!state.videoHistory.find((item) => item._id === video._id)) {
-    } else {
-      const response = await axios.post(
-        "https://serene-badlands-15662.herokuapp.com/history",
-        { id: video._id }
-      );
-      dispatch({ type: "ADD_TO_HISTORY", video });
+    if (login) {
+      if (!!state.videoHistory.find((item) => item._id === video._id)) {
+      } else {
+        const response = await axios.post(
+          "https://fast-savannah-42620.herokuapp.com/history",
+          {
+            id: video._id,
+          }
+        );
+        dispatch({ type: "ADD_TO_HISTORY", video });
+      }
     }
   }
 
   async function handleLikedVideos(video) {
-    try {
-      if (!!state.likedVideos.find((item) => item._id === video._id)) {
-        const response = await axios.post(
-          "https://serene-badlands-15662.herokuapp.com/liked-videos",
-          { id: video._id }
-        );
-        dispatch({
-          type: "DELETE_VIDEO_FROM_LIKED_VIDEOS",
-          video,
-        });
-      } else {
-        const response = await axios.post(
-          "https://serene-badlands-15662.herokuapp.com/liked-videos",
-          { id: video._id }
-        );
-        dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
+    if (login) {
+      try {
+        if (!!state.likedVideos.find((item) => item._id === video._id)) {
+          const response = await axios.post(
+            "https://fast-savannah-42620.herokuapp.com/liked-videos",
+            { id: video._id }
+          );
+          dispatch({
+            type: "DELETE_VIDEO_FROM_LIKED_VIDEOS",
+            video,
+          });
+        } else {
+          const response = await axios.post(
+            "https://fast-savannah-42620.herokuapp.com/liked-videos",
+            { id: video._id }
+          );
+          dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      navigate("../login");
     }
   }
 
@@ -149,7 +167,11 @@ export function YoutubePlayer() {
                 <button
                   className="player-btn"
                   title="add to My Playlist"
-                  onClick={() => setPlaylistWindow((window) => true)}
+                  onClick={() =>
+                    login
+                      ? setPlaylistWindow((window) => true)
+                      : navigate("../login")
+                  }
                 >
                   <FontAwesomeIcon icon={faIndent} size="lg" /> My Playlist
                 </button>

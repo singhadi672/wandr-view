@@ -1,5 +1,13 @@
 export function videoReducer(state, { type, video, payload, item }) {
   switch (type) {
+    case "RESET_DATA":
+      return {
+        ...state,
+        watchLater: [],
+        videoHistory: [],
+        likedVideos: [],
+        playlist: [],
+      };
     case "ADD_INITIAL_DATA":
       return {
         ...state,
@@ -7,6 +15,7 @@ export function videoReducer(state, { type, video, payload, item }) {
         videoHistory: payload.history,
         likedVideos: payload.likedVideos,
         playlist: payload.playlist,
+        username: payload.username,
       };
     case "ADD_TO_WATCH_LATER":
       return { ...state, watchLater: [...state.watchLater, video] };
@@ -15,7 +24,11 @@ export function videoReducer(state, { type, video, payload, item }) {
         ...state,
         playlist: [
           ...state.playlist,
-          { playlistName: [payload], playlistVideos: [] },
+          {
+            playlistName: payload.text,
+            playlistVideos: [],
+            _id: payload.playlistID,
+          },
         ],
       };
     case "ADD_VIDEO_TO_PLAYLIST":
@@ -56,7 +69,6 @@ export function videoReducer(state, { type, video, payload, item }) {
         ],
       };
     case "DELETE_PLAYLIST":
-      console.log(item);
       return {
         ...state,
         playlist: state.playlist.filter(

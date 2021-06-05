@@ -4,11 +4,8 @@ import "./videoList.css";
 import { NavLink } from "react-router-dom";
 
 export default function VideoList() {
-  const { videoList, setYoutubePlayer, youtubePlayer, searchString } =
+  const { videoList,searchString } =
     useVideo();
-
-  console.log(videoList);
-
   function searchData(videoList, searchString) {
     return videoList.filter((item) =>
       item.items[0]["snippet"].title

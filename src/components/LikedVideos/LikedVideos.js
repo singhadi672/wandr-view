@@ -1,17 +1,17 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { useVideo } from "../../contexts/video-context";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../contexts/auth-context";
 
 export function LikedVideos() {
-  const { state, setYoutubePlayer, youtubePlayer, dispatch } = useVideo();
+  const { state, dispatch } = useAuth();
   const { likedVideos } = state;
 
   async function handleLikedVideos(video) {
     const response = await axios.post(
-      "https://serene-badlands-15662.herokuapp.com/liked-videos",
+      "https://fast-savannah-42620.herokuapp.com/liked-videos",
       { id: video._id }
     );
     dispatch({ type: "DELETE_VIDEO_FROM_LIKED_VIDEOS", video });

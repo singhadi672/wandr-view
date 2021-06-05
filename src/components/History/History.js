@@ -1,15 +1,18 @@
-import { useVideo } from "../../contexts/video-context";
 import "./history.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../contexts/auth-context";
 export function History() {
-  const { state, dispatch } = useVideo();
+  const { state, dispatch } = useAuth();
   const { videoHistory } = state;
 
   async function handleHistory() {
-    await axios.post("https://serene-badlands-15662.herokuapp.com/history", {
-      clear: true,
-    });
+    await axios.post(
+      "https://fast-savannah-42620.herokuapp.com/history",
+      {
+        clear: true,
+      }
+    );
     dispatch({ type: "CLEAR_HISTORY" });
   }
 
