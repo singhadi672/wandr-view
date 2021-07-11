@@ -29,7 +29,7 @@ export default function Login() {
           setError({ ...error, status: false });
           navigate(state?.from ? `../${state.from}` : "/");
         } else {
-          setError({ ...error, status: true, msg: "internal server error" });
+          setError({ ...error, status: true, msg: "invalid username/password" });
         }
       } catch (error) {
         setError({ ...error, status: true, msg: "something went wrong!" });
