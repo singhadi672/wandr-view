@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./nav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -84,7 +84,9 @@ export function Nav() {
             className="avatar"
             onClick={() => setLogout((logout) => !logout)}
           >
-            <p>{state.username ? state.username.slice(0, 2).toUpperCase() : "US"}</p>
+            <p>
+              {state.username ? state.username.slice(0, 2).toUpperCase() : "US"}
+            </p>
           </div>
         </div>
       </nav>

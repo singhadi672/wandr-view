@@ -7,6 +7,7 @@ export function videoReducer(state, { type, video, payload, item }) {
         videoHistory: [],
         likedVideos: [],
         playlist: [],
+        username: ""
       };
     case "ADD_INITIAL_DATA":
       return {

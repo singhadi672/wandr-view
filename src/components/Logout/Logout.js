@@ -15,7 +15,7 @@ export default function Logout({ setLogout }) {
       setupAuthHeaderForServiceCalls(null);
       dispatch({ type: "RESET_DATA" });
       setLogin(false);
-      navigate("../login");
+      navigate("../");
     } else {
       navigate("../login");
       setLogout(false);

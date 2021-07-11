@@ -28,6 +28,7 @@ export default function AuthProvider({ children }) {
     playlist: [],
     videoHistory: [],
     likedVideos: [],
+    username: "US",
   });
 
   useEffect(() => {
