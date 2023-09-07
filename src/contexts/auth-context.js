@@ -37,7 +37,7 @@ export default function AuthProvider({ children }) {
         try {
           setupAuthHeaderForServiceCalls(token);
           const response = await axios.get(
-            "https://fast-savannah-42620.herokuapp.com/users"
+            "https://wandr-view-backend.vercel.app/users"
           );
           dispatch({
             type: "ADD_INITIAL_DATA",
@@ -66,7 +66,7 @@ export default function AuthProvider({ children }) {
   async function loginUserWithCredentials(email, password) {
     try {
       const response = await axios.post(
-        "https://fast-savannah-42620.herokuapp.com/login",
+        "https://wandr-view-backend.vercel.app/login",
         {
           email,
           password,
@@ -91,7 +91,7 @@ export default function AuthProvider({ children }) {
   async function signupUser(username, email, password) {
     try {
       const response = await axios.post(
-        "https://fast-savannah-42620.herokuapp.com/signup",
+        "https://wandr-view-backend.vercel.app/signup",
         {
           email,
           password,
