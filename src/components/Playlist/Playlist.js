@@ -23,7 +23,7 @@ export function Playlist() {
       (playlist) => playlist.playlistName == item
     )._id;
     const response = await axios.post(
-      "https://fast-savannah-42620.herokuapp.com/playlist/video",
+      "https://wandr-view-backend.vercel.app/playlist/video",
       { videoId: video._id, playlistId }
     );
     if (response.data.status) {
@@ -37,7 +37,7 @@ export function Playlist() {
 
   async function handleDeletePlaylist(item) {
     const response = await axios.post(
-      "https://fast-savannah-42620.herokuapp.com/playlist",
+      "https://wandr-view-backend.vercel.app/playlist",
       { playlistName: item }
     );
 
