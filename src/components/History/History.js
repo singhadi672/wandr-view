@@ -8,7 +8,7 @@ export function History() {
 
   async function handleHistory() {
     await axios.post(
-      "https://fast-savannah-42620.herokuapp.com/history",
+      "https://wandr-view-backend.vercel.app/history",
       {
         clear: true,
       }
