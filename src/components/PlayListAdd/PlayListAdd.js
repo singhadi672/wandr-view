@@ -33,7 +33,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
     );
     if (isVideoPresent) {
       const response = await axios.post(
-        "https://fast-savannah-42620.herokuapp.com/playlist/video",
+        "https://wandr-view-backend.vercel.app/playlist/video",
         { playlistId: targetPlaylist._id, videoId: video._id }
       );
       if (response.data.status) {
@@ -45,7 +45,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
       }
     } else {
       const response = await axios.post(
-        "https://fast-savannah-42620.herokuapp.com/playlist/video",
+        "https://wandr-view-backend.vercel.app/playlist/video",
         { playlistId: targetPlaylist._id, videoId: video._id }
       );
       if (response.data.status) {
@@ -66,7 +66,7 @@ export function PlayListAdd({ playlistWindow, setPlaylistWindow, video }) {
     if (isPlaylist && text !== "") {
     } else {
       const response = await axios.post(
-        "https://fast-savannah-42620.herokuapp.com/playlist",
+        "https://wandr-view-backend.vercel.app/playlist",
         {
           playlistName: text,
         }
