@@ -19,7 +19,7 @@ export function VideoProvider({ children }) {
         data: { videos },
       } = await axiosCall(
         "GET",
-        "https://fast-savannah-42620.herokuapp.com/videos"
+        "https://wandr-view-backend.vercel.app/videos"
       );
       setVideoList(videos);
       setLoader(false);
