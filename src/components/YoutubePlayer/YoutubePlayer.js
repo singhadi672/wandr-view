@@ -41,7 +41,7 @@ export function YoutubePlayer() {
       try {
         if (!!state.watchLater.find((item) => item._id === video._id)) {
           const response = await axios.post(
-            "https://fast-savannah-42620.herokuapp.com/watch-later",
+            "https://wandr-view-backend.vercel.app/watch-later",
             {
               id: video._id,
             }
@@ -52,7 +52,7 @@ export function YoutubePlayer() {
           });
         } else {
           const response = await axios.post(
-            "https://fast-savannah-42620.herokuapp.com/watch-later",
+            "https://wandr-view-backend.vercel.app/watch-later",
             {
               id: video._id,
             }
@@ -72,7 +72,7 @@ export function YoutubePlayer() {
       if (!!state.videoHistory.find((item) => item._id === video._id)) {
       } else {
         const response = await axios.post(
-          "https://fast-savannah-42620.herokuapp.com/history",
+          "https://wandr-view-backend.vercel.app/history",
           {
             id: video._id,
           }
@@ -87,7 +87,7 @@ export function YoutubePlayer() {
       try {
         if (!!state.likedVideos.find((item) => item._id === video._id)) {
           const response = await axios.post(
-            "https://fast-savannah-42620.herokuapp.com/liked-videos",
+            "https://wandr-view-backend.vercel.app/liked-videos",
             { id: video._id }
           );
           dispatch({
@@ -96,7 +96,7 @@ export function YoutubePlayer() {
           });
         } else {
           const response = await axios.post(
-            "https://fast-savannah-42620.herokuapp.com/liked-videos",
+            "https://wandr-view-backend.vercel.app/liked-videos",
             { id: video._id }
           );
           dispatch({ type: "ADD_TO_LIKED_VIDEOS", video });
