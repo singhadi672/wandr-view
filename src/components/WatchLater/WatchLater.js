@@ -14,7 +14,7 @@ export function WatchLater() {
 
   async function handleWatchLater(video) {
     const response = await axios.post(
-      "https://fast-savannah-42620.herokuapp.com/watch-later",
+      "https://wandr-view-backend.vercel.app/watch-later",
       { id: video._id }
     );
     dispatch({ type: "DELETE_VIDEO_FROM_WATCH_LATER", video });
