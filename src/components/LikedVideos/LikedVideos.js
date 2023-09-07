@@ -11,7 +11,7 @@ export function LikedVideos() {
 
   async function handleLikedVideos(video) {
     const response = await axios.post(
-      "https://fast-savannah-42620.herokuapp.com/liked-videos",
+      "https://wandr-view-backend.vercel.app/liked-videos",
       { id: video._id }
     );
     dispatch({ type: "DELETE_VIDEO_FROM_LIKED_VIDEOS", video });
